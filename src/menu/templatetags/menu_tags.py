@@ -19,6 +19,7 @@ def show_menu(context, menu_name):
     def find_by_id(id, items_list):
         return next(filter(lambda item: item['id'] == id, items_list), None)
 
+    # One db query
     all_menu_items = MenuItem.objects.filter(menu__name=menu_name).values()
 
     current_item = next(filter(lambda item: item['url'] in [current_url, resolved_url], all_menu_items), None)
