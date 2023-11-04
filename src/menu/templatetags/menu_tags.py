@@ -11,7 +11,7 @@ def keyval(dictionary, key):
         return dictionary[key]
 
 
-@register.inclusion_tag('menu.html', takes_context=True)
+@register.inclusion_tag('menu_tags/menu.html', takes_context=True)
 def show_menu(context, menu_name):
     current_url = context['request'].path
     resolved_url = resolve(current_url).url_name

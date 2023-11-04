@@ -1,0 +1,27 @@
+{% load menu_tags %}
+
+<ul class="submenu">
+{% for item in menu %}
+    <li>
+
+        {% if item.id != current_item.id %}
+            {% if item.use_named_url and item.url %}
+                <a href="{% url item.url %}">
+            {% else %}
+                <a href="{{ item.url }}">
+            {% endif %}
+                {{ item.name }}
+            </a>
+        {% else %}
+            <span class="menu-current">{{ item.name }}</span>
+        {% endif %}
+
+        {% with menu=children|keyval:item.id children=children %}
+            {% if menu %}
+                {% include 'menu_tags/menu.html' %}
+            {% endif %}
+        {% endwith %}
+
+    </li>
+{% endfor %}
+</ul>
